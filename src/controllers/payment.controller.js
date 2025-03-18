@@ -11,15 +11,41 @@ const PaymentController = {
 
     async createPayment(req, res){
         try {   
-            const { data, recibo, valor, observação} = req.body;
-            PaymentSchema.parse({data, recibo, valor, observação});
-            return res.status(201).json({message: 'Payment created', dataReq: {data, recibo, valor, observação}});            
+            const { data, recibo, valor, observacao} = req.body;
+            PaymentSchema.parse({data, recibo, valor, observacao});
+            return res.status(201).json({message: 'Payment created', dataReq: {data, recibo, valor, observacao}});            
         } catch (error) {
             if (error instanceof z.ZodError) {
                 return res.status(400).json({message: "Validation error", datails: error.errors});
             }
             return res.status(500).json({message: 'Internal server error'});
         }
+    },
+
+    async updatePayment(req, res){
+        const { id } = req.params;
+        try {
+            const { data, recibo, valor, observacao} = req.body;
+            PaymentSchema.parse({data, recibo, valor, observacao});
+            return res.status(200).json({message: 'Payment updated',
+                                     dataReq: {data, recibo, valor, observacao}});
+        } catch (error) {
+            if (error instanceof z.ZodError) {
+                return res.status(400).json({message: "Validation error", datails: error.errors});
+            }
+            return res.status(500).json({message: 'Internal server error'});
+        }
+    },
+
+
+    async deletePayment(req, res){
+        try {
+        const { id } = req.params;
+        return res.status(200).json({message: 'Payment deleted', id});
+    }
+    catch (error){
+        return res.status(500).json({message: 'Internal server error'});
+       }
     },
 
 

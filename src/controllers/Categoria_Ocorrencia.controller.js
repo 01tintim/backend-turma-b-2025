@@ -12,7 +12,7 @@ const PaymentSchema = z.object({
 
 // Categoria_Ocorrencia validation schema
 const CategoriaOcorrenciaSchema = z.object({
-  descricao: z.string().min(1, { message: 'Obrigatório esse campo' }),
+  descricao: z.string().min(1, { message: 'Obrigatório preencher esse campo' }),
 });
 
 const PaymentController = {

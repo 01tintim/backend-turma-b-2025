@@ -14,7 +14,7 @@ const AgenteSchema = z.object({
   cargo: z.string({ message: 'Cargo é obrigatório' }).min(1, { message: 'Cargo não pode ser vazio' }),
 });
 
-// --- CONTROLLERS ---
+// --- C ---
 
 const PaymentController = {
   async createPayment(req, res) {
